@@ -1,0 +1,115 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
+import ProjectCard from './ProjectCard';
+
+const Projects = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [selectedCategory, setSelectedCategory] = useState('Todos');
+
+  const categories = ['Todos', 'Web', 'Mobile', 'Backend', 'DevOps'];
+
+  const projects = [
+    {
+      title: "E-Commerce Platform",
+      description: "Plataforma de comercio electrónico completa con sistema de pagos integrado, gestión de inventario y panel de administración.",
+      image: "https://images.unsplash.com/photo-1625398122646-049e15c5fb1b",
+      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      category: "Web"
+    },
+    {
+      title: "Task Management App",
+      description: "Aplicación de gestión de tareas con colaboración en tiempo real, notificaciones push y sincronización en la nube.",
+      image: "https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4",
+      technologies: ["React Native", "Firebase", "Redux"],
+      category: "Mobile"
+    },
+    {
+      title: "Analytics Dashboard",
+      description: "Dashboard analítico con visualización de datos en tiempo real, reportes personalizados y exportación de datos.",
+      image: "https://images.unsplash.com/photo-1698945298361-365595d400eb",
+      technologies: ["React", "D3.js", "Python", "PostgreSQL"],
+      category: "Web"
+    },
+    {
+      title: "API REST Microservicios",
+      description: "Arquitectura de microservicios escalable con autenticación JWT, rate limiting y documentación automática.",
+      image: "https://images.unsplash.com/photo-1625398122646-049e15c5fb1b",
+      technologies: ["Node.js", "Docker", "Kubernetes", "Redis"],
+      category: "Backend"
+    },
+    {
+      title: "Sistema de Gestión Empresarial",
+      description: "ERP personalizado para gestión de recursos, inventario, RRHH y contabilidad con reportes avanzados.",
+      image: "https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4",
+      technologies: ["Vue.js", "Laravel", "MySQL"],
+      category: "Web"
+    },
+    {
+      title: "CI/CD Pipeline Automation",
+      description: "Pipeline automatizado de integración y despliegue continuo con testing automatizado y monitoreo.",
+      image: "https://images.unsplash.com/photo-1698945298361-365595d400eb",
+      technologies: ["Jenkins", "Docker", "AWS", "Terraform"],
+      category: "DevOps"
+    }
+  ];
+
+  const filteredProjects = selectedCategory === 'Todos'
+    ? projects
+    : projects.filter(project => project.category === selectedCategory);
+
+  return (
+    <section id="proyectos" className="py-20 bg-gradient-to-br from-[#1a2332] to-[#0a0f1a]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            Proyectos
+          </h2>
+          <div className="w-24 h-1 bg-[#00d4ff] mx-auto mb-6"></div>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Una selección de proyectos que demuestran mi experiencia y habilidades técnicas
+          </p>
+        </motion.div>
+
+        {/* Category Filter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-3 mb-12"
+        >
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
+                selectedCategory === category
+                  ? 'bg-[#00d4ff] text-[#1a2332] shadow-lg shadow-[#00d4ff]/30'
+                  : 'bg-white/5 text-white hover:bg-white/10 border border-white/10'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, index) => (
+            <ProjectCard key={index} project={project} index={index} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Projects;
