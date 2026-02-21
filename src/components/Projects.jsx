@@ -9,7 +9,7 @@ const Projects = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selectedCategory, setSelectedCategory] = useState('Todos');
 
-  const categories = ['Todos', 'Web', 'Mobile', 'Backend', 'DevOps'];
+  const categories = ['Todos', 'Web', 'Mobile', 'Backend'];
 
   const projects = [
     {
@@ -102,10 +102,23 @@ const Projects = () => {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
           ))}
+        </div> */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            Pronto ....
+          </h2>
+        </motion.div>
         </div>
       </div>
     </section>
