@@ -17,29 +17,33 @@ const Projects = () => {
       description: "Portfolio personal con diseño moderno, animaciones suaves y secciones interactivas para mostrar habilidades, proyectos y experiencia.",
       image: "https://images.unsplash.com/photo-1625398122646-049e15c5fb1b",
       technologies: ["React", "Tailwind CSS"],
-      category: "Web"
-    // },
-    // {
-    //   title: "Task Management App",
-    //   description: "Aplicación de gestión de tareas con colaboración en tiempo real, notificaciones push y sincronización en la nube.",
-    //   image: "https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4",
-    //   technologies: ["React Native", "Firebase", "Redux"],
-    //   category: "Mobile"
-    // },
-    // {
-    //   title: "Analytics Dashboard",
-    //   description: "Dashboard analítico con visualización de datos en tiempo real, reportes personalizados y exportación de datos.",
-    //   image: "https://images.unsplash.com/photo-1698945298361-365595d400eb",
-    //   technologies: ["React", "D3.js", "Python", "PostgreSQL"],
-    //   category: "Web"
-    // },
-    // {
-    //   title: "API REST Microservicios",
-    //   description: "Arquitectura de microservicios escalable con autenticación JWT, rate limiting y documentación automática.",
-    //   image: "https://images.unsplash.com/photo-1625398122646-049e15c5fb1b",
-    //   technologies: ["Node.js", "Docker", "Kubernetes", "Redis"],
-    //   category: "Backend"
-    // },
+      category: "Web",
+      link: "https://carlosq2031.github.io/portfolio-2026/"
+    },
+    {
+      title: "Encriptador de Textos",
+      description: "Permite encriptar y desencriptar texto. Ideal para mantener la confidencialidad de tus datos o simplemente agregar un toque de emoción a tus mensajes.",
+      image: "https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4",
+      technologies: ["JavaScript", "CSS", "HTML"],
+      category: "Web",
+      link: "https://carlosm2031.github.io/PrimerChallenge-Encriptador/"
+    },
+    {
+      title: "Frases al Azar: Encuentra tu Inspiración con un Clic",
+      description: "Este es un proyecto que presenta una página web en la que, al dar clic en la frase que se muestra, se cambia por otra. Se trata de una simple interacción que permite a los usuarios explorar diferentes frases.",
+      image: "https://images.unsplash.com/photo-1698945298361-365595d400eb",
+      technologies: ["JavaScript", "CSS", "HTML"],
+      category: "Web",
+      link: "https://carlosm2031.github.io/frases/"
+    },
+    {
+      title: "Juego del número secreto",
+      description: "Juego interactivo donde el usuario intenta adivinar un número secreto generado aleatoriamente.",
+      image: "Juego_Numero_Secreto.png",
+      technologies: ["JavaScript", "CSS", "HTML"],
+      category: "Web",
+      link: "https://carlosm2031.github.io/juego-secreto/"
+    }
     // {
     //   title: "Sistema de Gestión Empresarial",
     //   description: "ERP personalizado para gestión de recursos, inventario, RRHH y contabilidad con reportes avanzados.",
@@ -53,7 +57,7 @@ const Projects = () => {
     //   image: "https://images.unsplash.com/photo-1698945298361-365595d400eb",
     //   technologies: ["Jenkins", "Docker", "AWS", "Terraform"],
     //   category: "DevOps"
-   }
+   //}
   ];
 
   const filteredProjects = selectedCategory === 'Todos'

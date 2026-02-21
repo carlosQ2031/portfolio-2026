@@ -55,24 +55,30 @@ const ProjectCard = ({ project, index }) => {
 
         {/* Actions */}
         <div className="flex gap-3">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleViewMore}
-            className="flex-1 bg-[#00d4ff] text-[#1a2332] px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#00b8e6] transition-colors duration-300 flex items-center justify-center gap-2"
-          >
-            <ExternalLink size={16} />
-            Ver más
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleViewMore}
-            className="bg-white/5 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-white/10 transition-colors duration-300 flex items-center justify-center"
-          >
-            <Github size={18} />
-          </motion.button>
-        </div>
+  <motion.a
+    href={project.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="flex-1 bg-[#00d4ff] text-[#1a2332] px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#00b8e6] transition-colors duration-300 flex items-center justify-center gap-2"
+  >
+    <ExternalLink size={16} />
+    Ver más
+  </motion.a>
+
+  <motion.a
+    href={project.github}
+    target="_blank"
+    rel="noopener noreferrer"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="bg-white/5 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-white/10 transition-colors duration-300 flex items-center justify-center"
+  >
+    <Github size={18} />
+  </motion.a>
+</div>
+
       </div>
 
       {/* Hover Effect */}
