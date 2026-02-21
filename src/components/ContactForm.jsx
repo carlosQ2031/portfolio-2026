@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Send } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Send } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
+import emailjs from "@emailjs/browser";
 
 const ContactForm = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    asunto: '',
-    mensaje: ''
+    nombre: "",
+    email: "",
+    asunto: "",
+    mensaje: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -17,23 +18,23 @@ const ContactForm = () => {
     const newErrors = {};
 
     if (!formData.nombre.trim()) {
-      newErrors.nombre = 'El nombre es requerido';
+      newErrors.nombre = "El nombre es requerido";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'El email es requerido';
+      newErrors.email = "El email es requerido";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'El email no es válido';
+      newErrors.email = "El email no es válido";
     }
 
     if (!formData.asunto.trim()) {
-      newErrors.asunto = 'El asunto es requerido';
+      newErrors.asunto = "El asunto es requerido";
     }
 
     if (!formData.mensaje.trim()) {
-      newErrors.mensaje = 'El mensaje es requerido';
+      newErrors.mensaje = "El mensaje es requerido";
     } else if (formData.mensaje.trim().length < 10) {
-      newErrors.mensaje = 'El mensaje debe tener al menos 10 caracteres';
+      newErrors.mensaje = "El mensaje debe tener al menos 10 caracteres";
     }
 
     setErrors(newErrors);
@@ -42,41 +43,63 @@ const ContactForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: "",
       }));
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (validateForm()) {
+    if (!validateForm()) {
+      toast({
+        title: "❌ Error en el formulario",
+        description: "Por favor, completa todos los campos correctamente.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAIL_SERVICE,
+        import.meta.env.VITE_EMAIL_TEMPLATE,
+        {
+          name: formData.nombre,
+          email: formData.email,
+          title: formData.asunto,
+          message: formData.mensaje,
+        },
+        import.meta.env.VITE_EMAIL_PUBLIC,
+      );
+
       toast({
         title: "✅ Mensaje enviado con éxito",
         description: "Gracias por contactarme. Te responderé pronto.",
       });
-      
-      // Reset form
+
       setFormData({
-        nombre: '',
-        email: '',
-        asunto: '',
-        mensaje: ''
+        nombre: "",
+        email: "",
+        asunto: "",
+        mensaje: "",
       });
-    } else {
+    } catch (error) {
       toast({
-        title: "❌ Error en el formulario",
-        description: "Por favor, completa todos los campos correctamente.",
-        variant: "destructive"
+        title: "❌ Error al enviar",
+        description: "Ocurrió un problema. Inténtalo nuevamente.",
+        variant: "destructive",
       });
+
+      console.error(error);
     }
   };
 
@@ -84,7 +107,10 @@ const ContactForm = () => {
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Nombre */}
       <div>
-        <label htmlFor="nombre" className="block text-sm font-medium text-gray-300 mb-2">
+        <label
+          htmlFor="nombre"
+          className="block text-sm font-medium text-gray-300 mb-2"
+        >
           Nombre completo
         </label>
         <input
@@ -94,7 +120,7 @@ const ContactForm = () => {
           value={formData.nombre}
           onChange={handleChange}
           className={`w-full px-4 py-3 bg-[#0a0f1a] border ${
-            errors.nombre ? 'border-red-500' : 'border-[#00d4ff]/20'
+            errors.nombre ? "border-red-500" : "border-[#00d4ff]/20"
           } rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00d4ff] focus:ring-2 focus:ring-[#00d4ff]/20 transition-all duration-300`}
           placeholder="Tu nombre"
         />
@@ -105,7 +131,10 @@ const ContactForm = () => {
 
       {/* Email */}
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-gray-300 mb-2"
+        >
           Email
         </label>
         <input
@@ -115,7 +144,7 @@ const ContactForm = () => {
           value={formData.email}
           onChange={handleChange}
           className={`w-full px-4 py-3 bg-[#0a0f1a] border ${
-            errors.email ? 'border-red-500' : 'border-[#00d4ff]/20'
+            errors.email ? "border-red-500" : "border-[#00d4ff]/20"
           } rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00d4ff] focus:ring-2 focus:ring-[#00d4ff]/20 transition-all duration-300`}
           placeholder="tu@email.com"
         />
@@ -126,7 +155,10 @@ const ContactForm = () => {
 
       {/* Asunto */}
       <div>
-        <label htmlFor="asunto" className="block text-sm font-medium text-gray-300 mb-2">
+        <label
+          htmlFor="asunto"
+          className="block text-sm font-medium text-gray-300 mb-2"
+        >
           Asunto
         </label>
         <input
@@ -136,7 +168,7 @@ const ContactForm = () => {
           value={formData.asunto}
           onChange={handleChange}
           className={`w-full px-4 py-3 bg-[#0a0f1a] border ${
-            errors.asunto ? 'border-red-500' : 'border-[#00d4ff]/20'
+            errors.asunto ? "border-red-500" : "border-[#00d4ff]/20"
           } rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00d4ff] focus:ring-2 focus:ring-[#00d4ff]/20 transition-all duration-300`}
           placeholder="¿De qué quieres hablar?"
         />
@@ -147,7 +179,10 @@ const ContactForm = () => {
 
       {/* Mensaje */}
       <div>
-        <label htmlFor="mensaje" className="block text-sm font-medium text-gray-300 mb-2">
+        <label
+          htmlFor="mensaje"
+          className="block text-sm font-medium text-gray-300 mb-2"
+        >
           Mensaje
         </label>
         <textarea
@@ -157,7 +192,7 @@ const ContactForm = () => {
           onChange={handleChange}
           rows={6}
           className={`w-full px-4 py-3 bg-[#0a0f1a] border ${
-            errors.mensaje ? 'border-red-500' : 'border-[#00d4ff]/20'
+            errors.mensaje ? "border-red-500" : "border-[#00d4ff]/20"
           } rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00d4ff] focus:ring-2 focus:ring-[#00d4ff]/20 transition-all duration-300 resize-none`}
           placeholder="Escribe tu mensaje aquí..."
         />

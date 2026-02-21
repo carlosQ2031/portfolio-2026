@@ -90,18 +90,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#00d4ff]/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm flex items-center gap-1">
-              © {currentYear} Carlos Rodríguez. Hecho con 
-              <Heart size={16} className="text-red-500 fill-current" />
-            </p>
-            <p className="text-gray-400 text-sm">
-              Todos los derechos reservados
-            </p>
-          </div>
-        </div>
+        
       </div>
     </footer>
   );
