@@ -1,23 +1,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Linkedin, Github, Twitter, Mail } from 'lucide-react';
+import { Linkedin, Github, Mail } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  // Helper para asegurar links absolutos
+  const formatLink = (url) =>
+    url.startsWith('http') || url.startsWith('mailto:') ? url : `https://${url}`;
+
   const socialLinks = [
-    { icon: Linkedin, link: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Github, link: "https://github.com", label: "GitHub" },
-    { icon: Twitter, link: "https://twitter.com", label: "Twitter" },
-    { icon: Mail, link: "mailto:carlos.rodriguez@email.com", label: "Email" }
+    { icon: Linkedin, link: 'https://www.linkedin.com/in/carlos-quezada-chuquiruna', label: 'LinkedIn' },
+    { icon: Github, link: 'https://github.com/carlosQ2031', label: 'GitHub' },
+    { icon: Mail, link: 'mailto:carlos.quezada.dev@gmail.com', label: 'Email' }
   ];
 
   const navLinks = [
-    { name: "Inicio", id: "inicio" },
-    { name: "Sobre mí", id: "sobre-mi" },
-    { name: "Proyectos", id: "proyectos" },
-    { name: "Habilidades", id: "habilidades" },
-    { name: "Contacto", id: "contacto" }
+    { name: 'Inicio', id: 'inicio' },
+    { name: 'Sobre mí', id: 'sobre-mi' },
+    { name: 'Proyectos', id: 'proyectos' },
+    { name: 'Habilidades', id: 'habilidades' },
+    { name: 'Contacto', id: 'contacto' }
   ];
 
   const scrollToSection = (id) => {
@@ -40,9 +43,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <span className="text-2xl font-bold text-white mb-4 block">
-              Portfolio
-            </span>
+            <span className="text-2xl font-bold text-white mb-4 block">Portfolio</span>
             <p className="text-gray-400 text-sm mb-4">
               Ingeniero de Sistemas especializado en desarrollo de software y soluciones tecnológicas innovadoras.
             </p>
@@ -50,9 +51,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <span className="text-lg font-semibold text-white mb-4 block">
-              Navegación rápida
-            </span>
+            <span className="text-lg font-semibold text-white mb-4 block">Navegación rápida</span>
             <nav className="flex flex-col space-y-2">
               {navLinks.map((link) => (
                 <button
@@ -68,14 +67,12 @@ const Footer = () => {
 
           {/* Social Links */}
           <div>
-            <span className="text-lg font-semibold text-white mb-4 block">
-              Sígueme
-            </span>
+            <span className="text-lg font-semibold text-white mb-4 block">Sígueme</span>
             <div className="flex gap-3">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={index}
-                  href={social.link}
+                  href={formatLink(social.link)}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
@@ -90,7 +87,10 @@ const Footer = () => {
           </div>
         </div>
 
-        
+        {/* Footer bottom */}
+        <div className="text-center text-gray-500 text-sm mt-8">
+          © {currentYear} Carlos Quezada. Todos los derechos reservados.
+        </div>
       </div>
     </footer>
   );
