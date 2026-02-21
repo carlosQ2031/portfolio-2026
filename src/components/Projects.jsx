@@ -13,47 +13,47 @@ const Projects = () => {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "Plataforma de comercio electrónico completa con sistema de pagos integrado, gestión de inventario y panel de administración.",
+      title: "Carlos Quezada Portfolio",
+      description: "Portfolio personal con diseño moderno, animaciones suaves y secciones interactivas para mostrar habilidades, proyectos y experiencia.",
       image: "https://images.unsplash.com/photo-1625398122646-049e15c5fb1b",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      technologies: ["React", "Tailwind CSS"],
       category: "Web"
-    },
-    {
-      title: "Task Management App",
-      description: "Aplicación de gestión de tareas con colaboración en tiempo real, notificaciones push y sincronización en la nube.",
-      image: "https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4",
-      technologies: ["React Native", "Firebase", "Redux"],
-      category: "Mobile"
-    },
-    {
-      title: "Analytics Dashboard",
-      description: "Dashboard analítico con visualización de datos en tiempo real, reportes personalizados y exportación de datos.",
-      image: "https://images.unsplash.com/photo-1698945298361-365595d400eb",
-      technologies: ["React", "D3.js", "Python", "PostgreSQL"],
-      category: "Web"
-    },
-    {
-      title: "API REST Microservicios",
-      description: "Arquitectura de microservicios escalable con autenticación JWT, rate limiting y documentación automática.",
-      image: "https://images.unsplash.com/photo-1625398122646-049e15c5fb1b",
-      technologies: ["Node.js", "Docker", "Kubernetes", "Redis"],
-      category: "Backend"
-    },
-    {
-      title: "Sistema de Gestión Empresarial",
-      description: "ERP personalizado para gestión de recursos, inventario, RRHH y contabilidad con reportes avanzados.",
-      image: "https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4",
-      technologies: ["Vue.js", "Laravel", "MySQL"],
-      category: "Web"
-    },
-    {
-      title: "CI/CD Pipeline Automation",
-      description: "Pipeline automatizado de integración y despliegue continuo con testing automatizado y monitoreo.",
-      image: "https://images.unsplash.com/photo-1698945298361-365595d400eb",
-      technologies: ["Jenkins", "Docker", "AWS", "Terraform"],
-      category: "DevOps"
-    }
+    // },
+    // {
+    //   title: "Task Management App",
+    //   description: "Aplicación de gestión de tareas con colaboración en tiempo real, notificaciones push y sincronización en la nube.",
+    //   image: "https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4",
+    //   technologies: ["React Native", "Firebase", "Redux"],
+    //   category: "Mobile"
+    // },
+    // {
+    //   title: "Analytics Dashboard",
+    //   description: "Dashboard analítico con visualización de datos en tiempo real, reportes personalizados y exportación de datos.",
+    //   image: "https://images.unsplash.com/photo-1698945298361-365595d400eb",
+    //   technologies: ["React", "D3.js", "Python", "PostgreSQL"],
+    //   category: "Web"
+    // },
+    // {
+    //   title: "API REST Microservicios",
+    //   description: "Arquitectura de microservicios escalable con autenticación JWT, rate limiting y documentación automática.",
+    //   image: "https://images.unsplash.com/photo-1625398122646-049e15c5fb1b",
+    //   technologies: ["Node.js", "Docker", "Kubernetes", "Redis"],
+    //   category: "Backend"
+    // },
+    // {
+    //   title: "Sistema de Gestión Empresarial",
+    //   description: "ERP personalizado para gestión de recursos, inventario, RRHH y contabilidad con reportes avanzados.",
+    //   image: "https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4",
+    //   technologies: ["Vue.js", "Laravel", "MySQL"],
+    //   category: "Web"
+    // },
+    // {
+    //   title: "CI/CD Pipeline Automation",
+    //   description: "Pipeline automatizado de integración y despliegue continuo con testing automatizado y monitoreo.",
+    //   image: "https://images.unsplash.com/photo-1698945298361-365595d400eb",
+    //   technologies: ["Jenkins", "Docker", "AWS", "Terraform"],
+    //   category: "DevOps"
+   }
   ];
 
   const filteredProjects = selectedCategory === 'Todos'
@@ -102,11 +102,11 @@ const Projects = () => {
         </motion.div>
 
         {/* Projects Grid */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
           ))}
-        </div> */}
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
