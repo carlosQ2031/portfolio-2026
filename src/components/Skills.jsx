@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Code, Database, Cloud, Wrench, Layout, Server } from 'lucide-react';
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Code, Database, Cloud, Wrench, Layout, Server } from "lucide-react";
 
 const Skills = () => {
   const ref = useRef(null);
@@ -12,11 +12,10 @@ const Skills = () => {
       icon: Layout,
       gradient: "from-blue-500 to-cyan-500",
       skills: [
-        { name: "React", level: 90 },
-        { name: "Vue.js", level: 85 },
-        { name: "TypeScript", level: 88 },
-        { name: "Tailwind CSS", level: 92 }
-      ]
+        { name: "React" },
+        { name: "JavaScript" },
+        { name: "Tailwind CSS" },
+      ],
     },
     {
       title: "Backend",
@@ -26,19 +25,7 @@ const Skills = () => {
         { name: "Node.js", level: 90 },
         { name: "Python", level: 85 },
         { name: "Java", level: 80 },
-        { name: "PHP/Laravel", level: 82 }
-      ]
-    },
-    {
-      title: "DevOps",
-      icon: Cloud,
-      gradient: "from-purple-500 to-pink-500",
-      skills: [
-        { name: "Docker", level: 88 },
-        { name: "Kubernetes", level: 75 },
-        { name: "AWS", level: 85 },
-        { name: "CI/CD", level: 87 }
-      ]
+      ],
     },
     {
       title: "Databases",
@@ -47,9 +34,8 @@ const Skills = () => {
       skills: [
         { name: "PostgreSQL", level: 90 },
         { name: "MongoDB", level: 88 },
-        { name: "Redis", level: 82 },
-        { name: "MySQL", level: 85 }
-      ]
+        { name: "MySQL", level: 85 },
+      ],
     },
     {
       title: "Programming",
@@ -59,8 +45,8 @@ const Skills = () => {
         { name: "JavaScript", level: 95 },
         { name: "Python", level: 88 },
         { name: "Java", level: 82 },
-        { name: "C++", level: 78 }
-      ]
+        { name: "C#", level: 78 },
+      ],
     },
     {
       title: "Tools",
@@ -70,13 +56,16 @@ const Skills = () => {
         { name: "Git", level: 92 },
         { name: "VS Code", level: 95 },
         { name: "Postman", level: 90 },
-        { name: "Figma", level: 80 }
-      ]
-    }
+        { name: "Figma", level: 80 },
+      ],
+    },
   ];
 
   return (
-    <section id="habilidades" className="py-20 bg-gradient-to-br from-[#0a0f1a] to-[#1a2332]">
+    <section
+      id="habilidades"
+      className="py-20 bg-gradient-to-br from-[#0a0f1a] to-[#1a2332]"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -106,31 +95,42 @@ const Skills = () => {
             >
               {/* Category Header */}
               <div className="flex items-center gap-3 mb-6">
-                <div className={`p-3 rounded-lg bg-gradient-to-br ${category.gradient}`}>
+                <div
+                  className={`p-3 rounded-lg bg-gradient-to-br ${category.gradient}`}
+                >
                   <category.icon className="text-white" size={24} />
                 </div>
-                <h3 className="text-xl font-bold text-white">{category.title}</h3>
+                <h3 className="text-xl font-bold text-white">
+                  {category.title}
+                </h3>
               </div>
 
               {/* Skills List */}
-              <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex}>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-300 text-sm font-medium">{skill.name}</span>
-                      <span className="text-[#00d4ff] text-sm font-semibold">{skill.level}%</span>
+              <div className="space-y-6">
+                <div
+                  className="grid gap-4
+                   grid-cols-[repeat(auto-fit,minmax(160px,1fr))]"
+                >
+                  {category.skills.map((skill, i) => (
+                    <div
+                      key={i}
+                      className="
+              flex items-center justify-center
+              h-12 px-6
+              bg-gradient-to-br from-[#1f2937] to-[#111827]
+              text-gray-200 text-sm font-semibold
+              rounded-xl border border-gray-700
+              shadow-sm
+              hover:text-indigo-400 hover:border-indigo-400
+              transition-colors duration-200
+              whitespace-nowrap overflow-visible
+            "
+                      title={skill.name}
+                    >
+                      {skill.name}
                     </div>
-                    <div className="h-2 bg-[#0a0f1a] rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: categoryIndex * 0.1 + skillIndex * 0.1 }}
-                        className={`h-full bg-gradient-to-r ${category.gradient} rounded-full`}
-                      />
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
@@ -144,9 +144,14 @@ const Skills = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-12 text-center"
         >
-          <h3 className="text-2xl font-bold text-white mb-6">Otras Tecnologías</h3>
+          <h3 className="text-2xl font-bold text-white mb-6">
+            Otras Tecnologías
+          </h3>
           <div className="flex flex-wrap justify-center gap-3">
-            {['GraphQL', 'REST API', 'WebSockets', 'Microservices', 'Agile/Scrum', 'TDD', 'Linux', 'Nginx'].map((tech, index) => (
+            {[
+              "REST API",
+              "Agile/Scrum"
+            ].map((tech, index) => (
               <motion.span
                 key={index}
                 initial={{ opacity: 0, scale: 0.8 }}
