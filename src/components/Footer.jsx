@@ -5,10 +5,6 @@ import { Linkedin, Github, Mail } from 'lucide-react';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  // Helper para asegurar links absolutos
-  const formatLink = (url) =>
-    url.startsWith('http') || url.startsWith('mailto:') ? url : `https://${url}`;
-
   const socialLinks = [
     { icon: Linkedin, link: 'https://www.linkedin.com/in/carlos-quezada-chuquiruna', label: 'LinkedIn' },
     { icon: Github, link: 'https://github.com/carlosQ2031', label: 'GitHub' },
@@ -72,7 +68,7 @@ const Footer = () => {
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={index}
-                  href={formatLink(social.link)}
+                  href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}

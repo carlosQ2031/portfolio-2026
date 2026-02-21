@@ -26,7 +26,7 @@ const Contact = () =>{
         {
         icon: Linkedin,
         name: "LinkedIn",
-        link: "www.linkedin.com/in/carlos-quezada-chuquiruna",
+        link: "https://www.linkedin.com/in/carlos-quezada-chuquiruna",
         color: "hover:text-blue-400"
         },
         {
