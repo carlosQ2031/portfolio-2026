@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>Carlos Quezada - Ingeniero de Sistemas | Portfolio Profesional</title>
+        <title>Carlos Quezada - Portfolio Profesional</title>
         <meta name="description" content="Portfolio profesional de Carlos Quezada, Ingeniero de Sistemas especializado en desarrollo de software, aplicaciones web modernas y soluciones tecnológicas innovadoras." />
       </Helmet>
       
